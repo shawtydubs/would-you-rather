@@ -18,22 +18,26 @@ class App extends Component {
     };
 
     render() {
+        const {authedUser, loading} = this.props;
+
         return (
             <Router>
                 <Fragment>
                     <LoadingBar />
                     <div className="container">
-                        <header className="header">
-                            <Nav />
-                            <User />
-                        </header>
-                        {this.props.loading === true
+                        {loading
                             ? null
-                            : <div>
+                            : authedUser
+                            ? <div>
+                                <header className="header">
+                                    <Nav />
+                                    <User />
+                                </header>
                                 <Route path="/" exact component={Home} />
                                 <Route path="/add" component={AddQuestion} />
                                 <Route path="/leaderboard" component={Leaderboard} />
                               </div>
+                            : <Login />
                         }
                     </div>
                 </Fragment>
@@ -42,9 +46,10 @@ class App extends Component {
     };
 };
 
-function mapStateToProps({authedUser}) {
+function mapStateToProps({authedUser, loadingBar}) {
     return {
-        loading: authedUser === null
+        authedUser,
+        loading: loadingBar.default === 1,
     }
 }
 

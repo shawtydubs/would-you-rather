@@ -15,7 +15,7 @@ class Login extends Component {
 
         return (
             <div>
-                <h1>Would You Rather?</h1>
+                <h1>Please Log In</h1>
                 <select name="username" defaultValue="" onChange={this.handleChange}>
                     <option value="" disabled>Select a user...</option>
                     {_.map(users, user => (
