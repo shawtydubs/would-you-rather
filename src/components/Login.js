@@ -1,22 +1,37 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import _ from 'lodash';
+import {setAuthedUser} from '../actions/authedUser';
 
 class Login extends Component {
+    handleChange = (event) => {
+        const id = event.target.value;
+
+        this.props.dispatch(setAuthedUser(id));
+    };
+
     render() {
+        const {users} = this.props;
+
         return (
             <div>
                 <h1>Would You Rather?</h1>
-                <select name="username">
-                    <option>User 1</option>
+                <select name="username" defaultValue="" onChange={this.handleChange}>
+                    <option value="" disabled>Select a user...</option>
+                    {_.map(users, user => (
+                        <option key={user.id} value={user.id}>
+                            {user.name}
+                        </option>
+                    ))}
                 </select>
             </div>
         );
     };
 };
 
-const mapStateToProps = ({authedUser}) => {
+const mapStateToProps = ({users}) => {
     return {
-        authedUser,
+        users,
     }
 };
 
