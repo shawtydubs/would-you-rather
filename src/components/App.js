@@ -10,8 +10,6 @@ import LoadingBar from 'react-redux-loading';
 import Nav from './Nav';
 import User from './User';
 
-import './App.css';
-
 import {handleInitialData} from '../actions/shared';
 
 class App extends Component {
@@ -24,9 +22,11 @@ class App extends Component {
             <Router>
                 <Fragment>
                     <LoadingBar />
-                    <div className="App">
-                        <Nav />
-                        <User />
+                    <div className="container">
+                        <header className="header">
+                            <Nav />
+                            <User />
+                        </header>
                         {this.props.loading === true
                             ? null
                             : <div>
