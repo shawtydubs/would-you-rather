@@ -8,6 +8,7 @@ import Leaderboard from './Leaderboard';
 import Login from './Login';
 import LoadingBar from 'react-redux-loading';
 import Nav from './Nav';
+import User from './User';
 
 import './App.css';
 
@@ -25,6 +26,7 @@ class App extends Component {
                     <LoadingBar />
                     <div className="App">
                         <Nav />
+                        <User />
                         {this.props.loading === true
                             ? null
                             : <div>
