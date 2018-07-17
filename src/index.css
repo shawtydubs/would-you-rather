@@ -1,7 +1,7 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
 }
 
 li {
@@ -9,18 +9,46 @@ li {
 }
 
 a {
+    color: #fff;
     text-decoration: none;
 }
 
+.active {
+    color: #999;
+}
+
 .container {
-  text-align: center;
+    text-align: center;
 }
 
 .header {
-  display: flex;
-  justify-content: space-between;
+    align-items: center;
+    background-color: #000;
+    display: flex;
+    justify-content: space-between;
 }
 
 .nav ul {
     display: flex;
+}
+
+.nav ul li {
+    padding: 20px;
+}
+
+.user {
+    align-items: center;
+    color: #fff;
+    display: flex;
+    padding: 20px;
+}
+
+.user-item {
+    margin: 10px;
+}
+
+.avatar {
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
 }

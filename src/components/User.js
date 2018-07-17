@@ -3,19 +3,21 @@ import {connect} from 'react-redux';
 
 class User extends Component {
     render() {
-        const {authedUser} = this.props;
+        const {avatar, name} = this.props;
 
         return (
             <div className="user">
-                {authedUser}
+                <img src={require(`../images/${avatar}`)} className="avatar user-item"/>
+                <span className="user-item">{name}</span>
             </div>
         );
     };
 };
 
-const mapStateToProps = ({authedUser}) => {
+const mapStateToProps = ({authedUser, users}) => {
     return {
-        authedUser
+        name: users[authedUser].name,
+        avatar: users[authedUser].avatarURL,
     }
 };
 
