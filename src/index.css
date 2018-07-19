@@ -52,3 +52,43 @@ a {
     width: 50px;
     border-radius: 25px;
 }
+
+.btn {
+    background: #fff;
+    border: 1px solid #bfbfbf;
+    font-size: 16px;
+    margin: 20px;
+    padding: 10px 30px;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    border: 1px solid #808080;
+}
+
+.question-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px auto;
+    width: 600px;
+}
+
+.question-panel {
+    border: 3px solid #000;
+    margin: 20px;
+}
+
+.option {
+    border: 1px solid #000;
+    font-weight: bold;
+    padding: 30px;
+}
+
+.one {
+    background-color: #e6f7ff;
+}
+
+.two {
+    background-color: #d6f5d6;
+}
