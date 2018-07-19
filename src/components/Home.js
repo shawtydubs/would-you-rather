@@ -17,8 +17,17 @@ class Home extends Component {
         const {questions, user} = this.props;
         const {showAnsweredQuestions} = this.state;
 
-        const answeredQuestions = _.filter(questions, question => _.includes(_.keys(user.answers), question.id));
-        const unansweredQuestions = _.reject(questions, question => _.includes(_.keys(user.answers), question.id));
+        const answeredQuestions = _(questions)
+            .filter(question => _.includes(_.keys(user.answers), question.id))
+            .sortBy(['timestamp'])
+            .reverse()
+            .valueOf();
+
+        const unansweredQuestions = _(questions)
+            .reject(question => _.includes(_.keys(user.answers), question.id))
+            .sortBy(['timestamp'])
+            .reverse()
+            .valueOf();
 
         const questionsToShow = showAnsweredQuestions ? answeredQuestions : unansweredQuestions;
         const titleText = showAnsweredQuestions ? 'Answered Questions' : 'Unanswered Questions';
