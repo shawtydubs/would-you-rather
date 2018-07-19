@@ -92,3 +92,17 @@ a {
 .two {
     background-color: #d6f5d6;
 }
+
+.add-question-form {
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+    width: 600px;
+}
+
+.option-input {
+    font-size: 16px;
+    height: 50px;
+    padding: 0 20px;
+    margin: 20px;
+}
