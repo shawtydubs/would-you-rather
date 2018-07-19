@@ -7,7 +7,7 @@ class User extends Component {
 
         return (
             <div className="user">
-                <img src={require(`../images/${avatar}`)} className="avatar user-item"/>
+                <img src={require(`../images/${avatar}`)} className="avatar user-item" alt={`Avatar of ${name}`}/>
                 <span className="user-item">{name}</span>
             </div>
         );
