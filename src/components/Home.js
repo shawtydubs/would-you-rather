@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import _ from 'lodash';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 class Home extends Component {
     state = {
@@ -38,12 +39,16 @@ class Home extends Component {
                 <h1>{titleText}</h1>
                 <button className="btn" onClick={this.toggleQuestions}>{buttonText}</button>
                 <div className="question-list">
-                    {_.map(questionsToShow, question => (
-                        <div key={question.id} className="question-panel">
-                            <div className="option one">{question.optionOne.text}</div>
-                            <div className="option two">{question.optionTwo.text}</div>
-                        </div>
-                    ))}
+                    {_.map(questionsToShow, question => {
+                        const {id} = question;
+
+                        return <Link to={`/question/${id}`} key={question.id}>
+                            <div className="question-panel">
+                                <div className="option one">{question.optionOne.text}</div>
+                                <div className="option two">{question.optionTwo.text}</div>
+                            </div>
+                        </Link>
+                    })}
                 </div>
             </div>
         );

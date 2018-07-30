@@ -8,6 +8,7 @@ import Leaderboard from './Leaderboard';
 import Login from './Login';
 import LoadingBar from 'react-redux-loading';
 import Nav from './Nav';
+import QuestionDetail from './QuestionDetail';
 import User from './User';
 
 import {handleInitialData} from '../actions/shared';
@@ -35,6 +36,7 @@ class App extends Component {
                                 </header>
                                 <Route path="/" exact component={Home} />
                                 <Route path="/add" component={AddQuestion} />
+                                <Route path="/question/:id" component={QuestionDetail} />
                                 <Route path="/leaderboard" component={Leaderboard} />
                               </div>
                             : <Login />

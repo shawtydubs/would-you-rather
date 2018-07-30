@@ -53,6 +53,12 @@ a {
     border-radius: 25px;
 }
 
+.avatar-large {
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+}
+
 .btn {
     background: #fff;
     border: 1px solid #bfbfbf;
