@@ -8,9 +8,12 @@ class QuestionDetail extends Component {
         return (
             <div className="question-detail">
                 <h1>Would You Rather?</h1>
-                <div>{optionOne.text}</div>
-                <div>{optionTwo.text}</div>
-                <img src={require(`../images/${avatar}`)} className="avatar-large" alt={`Avatar of ${name}`}/>
+                <div className="option one poll">{optionOne.text}</div>
+                <div className="option two poll">{optionTwo.text}</div>
+                <div className="question-author">
+                    Asked by
+                    <img src={require(`../images/${avatar}`)} className="avatar author-img" alt={`Avatar of ${name}`}/>
+                </div>
             </div>
         );
     };

@@ -53,12 +53,6 @@ a {
     border-radius: 25px;
 }
 
-.avatar-large {
-    height: 200px;
-    width: 200px;
-    border-radius: 100px;
-}
-
 .btn {
     background: #fff;
     border: 1px solid #bfbfbf;
@@ -89,7 +83,7 @@ a {
 .option {
     border: 1px solid #000;
     font-weight: bold;
-    padding: 30px;
+    padding: 20px;
 }
 
 .one {
@@ -112,4 +106,24 @@ a {
     height: 50px;
     padding: 0 20px;
     margin: 20px;
+}
+
+.question-detail {
+    margin: auto;
+    width: 600px;
+}
+
+.question-author {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    font-style: italic;
+}
+
+.author-img {
+    margin: 0 0 0 20px;
+}
+
+.poll {
+    margin: 40px auto;
 }
