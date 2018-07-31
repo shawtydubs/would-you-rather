@@ -16,6 +16,17 @@ class QuestionDetail extends Component {
         this.setState({answered: true});
     }
 
+    formatPercentage = (votes) => {
+        const {question: {optionOne, optionTwo}} = this.props;
+        const totalVotes = optionOne.votes.length + optionTwo.votes.length;
+
+        if (totalVotes === 0) {
+            return '0%';
+        };
+
+        return `${Math.floor(votes / totalVotes * 100)}%`;
+    }
+
     render() {
         const {avatar, name, question: {optionOne, optionTwo}} = this.props;
         const {answered} = this.state;
@@ -30,7 +41,7 @@ class QuestionDetail extends Component {
                 {answered && (
                     <div>
                         Number of Votes: {optionOne.votes.length}<br />
-                        Percentage of Votes: {Math.floor(optionOne.votes.length / totalVotes * 100)}%
+                        Percentage of Votes: {this.formatPercentage(optionOne.votes.length)}
                     </div>
                 )}
 
@@ -38,7 +49,7 @@ class QuestionDetail extends Component {
                 {answered && (
                     <div>
                         Number of Votes: {optionTwo.votes.length}<br />
-                        Percentage of Votes: {Math.floor(optionTwo.votes.length / totalVotes * 100)}%
+                        Percentage of Votes: {this.formatPercentage(optionTwo.votes.length)}
                     </div>
                 )}
 
