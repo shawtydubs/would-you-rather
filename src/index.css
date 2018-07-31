@@ -82,6 +82,7 @@ a {
 
 .option {
     border: 1px solid #000;
+    font-size: 16px;
     font-weight: bold;
     padding: 20px;
 }
@@ -125,5 +126,7 @@ a {
 }
 
 .poll {
+    display: block;
     margin: 40px auto;
+    width: 100%;
 }
