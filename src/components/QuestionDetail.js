@@ -26,7 +26,7 @@ class QuestionDetail extends Component {
             <div className="question-detail">
                 <h1>Would You Rather?</h1>
 
-                <button value="optionOne" className="option one poll" onClick={this.handleVote}>{optionOne.text}</button>
+                <button value="optionOne" className="option one poll" onClick={this.handleVote} disabled={answered}>{optionOne.text}</button>
                 {answered && (
                     <div>
                         Number of Votes: {optionOne.votes.length}<br />
@@ -34,7 +34,7 @@ class QuestionDetail extends Component {
                     </div>
                 )}
 
-                <button value="optionTwo" className="option two poll" onClick={this.handleVote}>{optionTwo.text}</button>
+                <button value="optionTwo" className="option two poll" onClick={this.handleVote} disabled={answered}>{optionTwo.text}</button>
                 {answered && (
                     <div>
                         Number of Votes: {optionTwo.votes.length}<br />
