@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import {connect} from 'react-redux';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import AddQuestion from './AddQuestion';
 import Home from './Home';
 import Leaderboard from './Leaderboard';
 import Login from './Login';
 import LoadingBar from 'react-redux-loading';
+import NoMatch from './NoMatch';
 import Nav from './Nav';
 import QuestionDetail from './QuestionDetail';
 import User from './User';
@@ -34,10 +35,13 @@ class App extends Component {
                                     <Nav />
                                     <User />
                                 </header>
-                                <Route path="/" exact component={Home} />
-                                <Route path="/add" component={AddQuestion} />
-                                <Route path="/question/:id" component={QuestionDetail} />
-                                <Route path="/leaderboard" component={Leaderboard} />
+                                <Switch>
+                                    <Route path="/" exact component={Home} />
+                                    <Route path="/add" component={AddQuestion} />
+                                    <Route path="/question/:id" component={QuestionDetail} />
+                                    <Route path="/leaderboard" component={Leaderboard} />
+                                    <Route component={NoMatch} />
+                                </Switch>
                               </div>
                             : <Login />
                         }

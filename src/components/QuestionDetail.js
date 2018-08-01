@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {handleSaveQuestionAnswer} from '../actions/questions';
 import classNames from 'classnames';
+import _ from 'lodash';
+import NoMatch from './NoMatch';
 
 class QuestionDetail extends Component {
     state = {
@@ -43,6 +45,10 @@ class QuestionDetail extends Component {
     }
 
     render() {
+        if (_.isNil(this.props.question)) {
+            return <NoMatch />
+        }
+
         const {avatar, name, question: {optionOne, optionTwo}} = this.props;
         const {answer} = this.state;
 
@@ -94,6 +100,12 @@ class QuestionDetail extends Component {
 const mapStateToProps = ({authedUser, questions, users}, props) => {
     const {id} = props.match.params;
     const question = questions[id];
+
+    if (_.isNil(question)) {
+        return {
+            question
+        };
+    }
 
     return {
         authedUser,
