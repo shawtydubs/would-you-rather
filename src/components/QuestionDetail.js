@@ -31,8 +31,6 @@ class QuestionDetail extends Component {
         const {avatar, name, question: {optionOne, optionTwo}} = this.props;
         const {answered} = this.state;
 
-        const totalVotes = optionOne.votes.length + optionTwo.votes.length;
-
         return (
             <div className="question-detail">
                 <h1>Would You Rather?</h1>
