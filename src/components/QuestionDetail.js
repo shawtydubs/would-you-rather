@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {handleSaveQuestionAnswer} from '../actions/questions';
+import classNames from 'classnames';
 
 class QuestionDetail extends Component {
     state = {
-        answered: false
+        answer: ''
     };
 
     handleVote = (event) => {
@@ -13,7 +14,7 @@ class QuestionDetail extends Component {
 
         dispatch(handleSaveQuestionAnswer(authedUser, id, vote));
 
-        this.setState({answered: true});
+        this.setState({answer: vote});
     }
 
     formatPercentage = (votes) => {
@@ -27,24 +28,54 @@ class QuestionDetail extends Component {
         return `${Math.floor(votes / totalVotes * 100)}%`;
     }
 
+    generateClassName = (value) => {
+        const {answer} = this.state;
+
+        return classNames(
+            "poll",
+            "option",
+            {
+                "one": value === "optionOne",
+                "two": value === "optionTwo",
+                "selected": value === answer,
+            }
+        );
+    }
+
     render() {
         const {avatar, name, question: {optionOne, optionTwo}} = this.props;
-        const {answered} = this.state;
+        const {answer} = this.state;
 
         return (
             <div className="question-detail">
                 <h1>Would You Rather?</h1>
 
-                <button value="optionOne" className="option one poll" onClick={this.handleVote} disabled={answered}>{optionOne.text}</button>
-                {answered && (
+                <button
+                    value="optionOne"
+                    className={this.generateClassName('optionOne')}
+                    onClick={this.handleVote}
+                    disabled={answer !== ''}
+                >
+                    {optionOne.text}
+                </button>
+
+                {answer !== '' && (
                     <div>
                         Number of Votes: {optionOne.votes.length}<br />
                         Percentage of Votes: {this.formatPercentage(optionOne.votes.length)}
                     </div>
                 )}
 
-                <button value="optionTwo" className="option two poll" onClick={this.handleVote} disabled={answered}>{optionTwo.text}</button>
-                {answered && (
+                <button
+                    value="optionTwo"
+                    className={this.generateClassName('optionTwo')}
+                    onClick={this.handleVote}
+                    disabled={answer !== ''}
+                >
+                    {optionTwo.text}
+                </button>
+
+                {answer !== '' && (
                     <div>
                         Number of Votes: {optionTwo.votes.length}<br />
                         Percentage of Votes: {this.formatPercentage(optionTwo.votes.length)}
