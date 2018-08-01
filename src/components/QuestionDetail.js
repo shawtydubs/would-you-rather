@@ -6,17 +6,11 @@ import _ from 'lodash';
 import NoMatch from './NoMatch';
 
 class QuestionDetail extends Component {
-    state = {
-        answer: ''
-    };
-
     handleVote = (event) => {
         const {authedUser, dispatch, id} = this.props;
         const vote = event.target.value;
 
         dispatch(handleSaveQuestionAnswer(authedUser, id, vote));
-
-        this.setState({answer: vote});
     }
 
     formatPercentage = (votes) => {
@@ -31,7 +25,7 @@ class QuestionDetail extends Component {
     }
 
     generateClassName = (value) => {
-        const {answer} = this.state;
+        const {authedUser, question} = this.props;
 
         return classNames(
             "poll",
@@ -39,7 +33,7 @@ class QuestionDetail extends Component {
             {
                 "one": value === "optionOne",
                 "two": value === "optionTwo",
-                "selected": value === answer,
+                "selected": _.includes(question[value].votes, authedUser),
             }
         );
     }
@@ -49,8 +43,9 @@ class QuestionDetail extends Component {
             return <NoMatch />
         }
 
-        const {avatar, name, question: {optionOne, optionTwo}} = this.props;
-        const {answer} = this.state;
+        const {authedUser, avatar, name, question: {optionOne, optionTwo}} = this.props;
+
+        const hasAnswered = _.includes(optionOne.votes, authedUser) || _.includes(optionTwo.votes, authedUser);
 
         return (
             <div className="question-detail">
@@ -60,12 +55,12 @@ class QuestionDetail extends Component {
                     value="optionOne"
                     className={this.generateClassName('optionOne')}
                     onClick={this.handleVote}
-                    disabled={answer !== ''}
+                    disabled={hasAnswered}
                 >
                     {optionOne.text}
                 </button>
 
-                {answer !== '' && (
+                {hasAnswered && (
                     <div>
                         Number of Votes: {optionOne.votes.length}<br />
                         Percentage of Votes: {this.formatPercentage(optionOne.votes.length)}
@@ -76,12 +71,12 @@ class QuestionDetail extends Component {
                     value="optionTwo"
                     className={this.generateClassName('optionTwo')}
                     onClick={this.handleVote}
-                    disabled={answer !== ''}
+                    disabled={hasAnswered}
                 >
                     {optionTwo.text}
                 </button>
 
-                {answer !== '' && (
+                {hasAnswered && (
                     <div>
                         Number of Votes: {optionTwo.votes.length}<br />
                         Percentage of Votes: {this.formatPercentage(optionTwo.votes.length)}
