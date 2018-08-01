@@ -7,7 +7,7 @@ class NoMatch extends Component {
             <div>
                 <h1>Sorry</h1>
                 <p>You seem to be a bit lost. Return to <Link to="/">Home</Link>.</p>
-                <img src={require("../images/lost.jpg")} />
+                <img src={require("../images/lost.jpg")} alt="Lost traveler with compass" />
             </div>
         );
     };
