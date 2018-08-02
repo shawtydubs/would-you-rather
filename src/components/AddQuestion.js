@@ -23,7 +23,7 @@ class AddQuestion extends Component {
         const {optionOneText, optionTwoText} = this.state;
         const {authedUser, dispatch} = this.props;
 
-        dispatch(handleAddQuestion(optionOneText, optionTwoText, authedUser));
+        dispatch(handleAddQuestion(optionOneText.trim(), optionTwoText.trim(), authedUser));
 
         this.setState({
             optionOneText: '',
@@ -32,10 +32,12 @@ class AddQuestion extends Component {
         })
     }
 
+    queryIsNotValid = query => !/\S/.test(query) || _.isEmpty(query)
+
     render() {
         const {optionOneText, optionTwoText, toHome} = this.state;
 
-        const disableButton = _.isEmpty(optionOneText) || _.isEmpty(optionTwoText);
+        const disableButton = this.queryIsNotValid(optionOneText) || this.queryIsNotValid(optionTwoText);
 
         if (toHome) {
             return <Redirect to='/' />
