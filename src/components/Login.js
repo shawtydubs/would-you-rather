@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 import {setAuthedUser} from '../actions/authedUser';
+import {Redirect} from 'react-router-dom';
 
 class Login extends Component {
     handleChange = (event) => {
@@ -11,7 +12,11 @@ class Login extends Component {
     };
 
     render() {
-        const {users} = this.props;
+        const {authedUser, users} = this.props;
+
+        if (authedUser) {
+            return <Redirect to="/" />
+        }
 
         return (
             <div>
@@ -29,8 +34,9 @@ class Login extends Component {
     };
 };
 
-const mapStateToProps = ({users}) => {
+const mapStateToProps = ({authedUser, users}) => {
     return {
+        authedUser,
         users,
     }
 };

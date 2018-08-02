@@ -50,6 +50,10 @@ a {
     margin: 10px;
 }
 
+.user-name {
+    font-weight: bold;
+}
+
 .avatar {
     height: 50px;
     width: 50px;

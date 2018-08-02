@@ -40,6 +40,7 @@ class App extends Component {
                                     <Route path="/add" component={AddQuestion} />
                                     <Route path="/question/:id" component={QuestionDetail} />
                                     <Route path="/leaderboard" component={Leaderboard} />
+                                    <Route path="/login" component={Login} />
                                     <Route component={NoMatch} />
                                 </Switch>
                               </div>
